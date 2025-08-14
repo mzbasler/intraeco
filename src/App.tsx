@@ -10,10 +10,9 @@ import { Projects } from "./components/Projects";
 import { Company } from "./components/Company";
 import { GenericSection } from "./components/GenericSection";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import { Sheet, SheetContent, SheetTrigger } from "./components/ui/sheet";
-import { Button } from "./components/ui/button";
+import { Sheet, SheetContent } from "./components/ui/sheet";
 import { useIsMobile } from "./components/ui/use-mobile";
-import { Link, Menu } from "lucide-react";
+import { Link } from "lucide-react";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("dashboard");
