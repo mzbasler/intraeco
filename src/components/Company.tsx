@@ -13,7 +13,6 @@ import {
   Phone,
   Mail,
   Globe,
-  Fax,
   Calendar,
   FileCheck
 } from "lucide-react";
