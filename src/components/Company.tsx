@@ -533,34 +533,7 @@ function CompanyLocations() {
         ))}
       </div>
 
-      {/* Mapa de Localização */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            Localização das Unidades
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="text-center p-4 rounded-lg bg-blue-50">
-              <div className="text-lg font-semibold text-blue-600 mb-1">1</div>
-              <div className="text-sm text-muted-foreground">Sede</div>
-            </div>
-            <div className="text-center p-4 rounded-lg bg-green-50">
-              <div className="text-lg font-semibold text-green-600 mb-1">2</div>
-              <div className="text-sm text-muted-foreground">Filiais</div>
-            </div>
-            <div className="text-center p-4 rounded-lg bg-orange-50">
-              <div className="text-lg font-semibold text-orange-600 mb-1">2</div>
-              <div className="text-sm text-muted-foreground">Escritórios</div>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground mt-4 text-center">
-            Presença estratégica em 5 estados brasileiros para melhor atendimento aos nossos clientes.
-          </p>
-        </CardContent>
-      </Card>
+      
     </>
   );
 }
@@ -876,27 +849,60 @@ function FireBrigadeOrganogram() {
 }
 
 function CompanyResponsibles() {
-  const responsibles = [
+  const isMobile = useIsMobile();
+
+  // Dados extraídos do documento fornecido
+  const unidadesOrganizacionais = [
     {
-      area: "Direção Geral",
-      name: "Carlos Eduardo Silva",
-      position: "Diretor Presidente",
-      email: "carlos.silva@ecoplan.com.br",
-      phone: "(51) 3272-8900"
+      categoria: "Diretoria",
+      responsaveis: [
+        { nome: "Julio Fortini de Souza", cargo: "Diretor" },
+        { nome: "Ana Lucia Fortini Divelius", cargo: "Diretora" },
+        { nome: "Carlos Alves Mees", cargo: "Diretor" }
+      ]
     },
     {
-      area: "Recursos Humanos",
-      name: "Ana Maria Costa",
-      position: "Gerente de RH",
-      email: "ana.costa@ecoplan.com.br",
-      phone: "(51) 3272-8901"
+      categoria: "Diretorias Executivas",
+      responsaveis: [
+        { nome: "Julio Fortini de Souza", cargo: "Diretoria Executiva" },
+        { nome: "Ana Lucia Fortini Divelius/Gustavo Hermes", cargo: "Diretoria Administrativa-Financeira" },
+        { nome: "Julio Fortini de Souza", cargo: "Diretoria Comercial" },
+        { nome: "Carlos Alves Mees", cargo: "Coordenação Técnico-Operacional" }
+      ]
     },
     {
-      area: "Tecnologia",
-      name: "Roberto Ferreira",
-      position: "Gerente de TI",
-      email: "roberto.ferreira@ecoplan.com.br",
-      phone: "(51) 3272-8902"
+      categoria: "Gerências",
+      responsaveis: [
+        { nome: "Ana Lucia Pavão Trindade", cargo: "Gerência da Qualidade" },
+        { nome: "Ana Lucia Pavão Trindade", cargo: "Meio Ambiente/Saúde e Segurança" }
+      ]
+    },
+    {
+      categoria: "Áreas Técnicas (Gerências)",
+      responsaveis: [
+        { nome: "Julio Fortini de Souza/Jaworowski", cargo: "Estudos de Saneamento/Rec. Hídricos" },
+        { nome: "Vinícios Andreolli", cargo: "Estradas" },
+        { nome: "Sandra Sanritag", cargo: "Meio Ambiente" },
+        { nome: "Ana Lucia Pavão Trindade", cargo: "TI/Suporte Técnico e Programação" },
+        { nome: "Alvaro Luis Thomaz/Elisabeta Stortz", cargo: "Propostas" }
+      ]
+    },
+    {
+      categoria: "Áreas Administrativas",
+      responsaveis: [
+        { nome: "Gustavo Hermes", cargo: "Cadastro" },
+        { nome: "Marcio da Luz de Abreu", cargo: "Contabilidade/Rec. Humanos" },
+        { nome: "Ana Lucia Fortini Divelius S. Barbosa", cargo: "Financeiro" },
+        { nome: "Daniel Kreuz Rohten", cargo: "Tesouraria" },
+        { nome: "Juliano da Silva Müller", cargo: "Compras" }
+      ]
+    },
+    {
+      categoria: "Escritórios Regionais",
+      responsaveis: [
+        { nome: "Ivan Marante Junior", cargo: "Brasília/DF" },
+        { nome: "Erno Stefan", cargo: "Cuiabá/MT" }
+      ]
     }
   ];
 
@@ -905,35 +911,60 @@ function CompanyResponsibles() {
       <div>
         <h1 className="mb-2">Identificação dos Responsáveis</h1>
         <p className="text-muted-foreground">
-          Principais responsáveis por área na empresa.
+          Organização da Ecoplan Engenharia Ltda. e Skill Engenharia Ltda. - Identificação dos responsáveis por unidades organizacionais.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {responsibles.map((person, index) => (
+      <div className="space-y-6">
+        {unidadesOrganizacionais.map((unidade, index) => (
           <Card key={index}>
             <CardHeader>
-              <CardTitle className="text-base">{person.area}</CardTitle>
+              <CardTitle className="text-lg">{unidade.categoria}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div>
-                <h4 className="font-medium">{person.name}</h4>
-                <p className="text-sm text-muted-foreground">{person.position}</p>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">{person.email}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">{person.phone}</p>
-                </div>
+            <CardContent>
+              <div className={`grid gap-4 ${
+                isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
+              }`}>
+                {unidade.responsaveis.map((responsavel, respIndex) => (
+                  <div key={respIndex} className="flex items-start justify-between p-3 rounded-lg bg-muted/20 hover:bg-muted/40 transition-colors">
+                    <div className="flex-1">
+                      <h4 className="font-medium text-sm">{responsavel.cargo}</h4>
+                      <p className="text-sm text-muted-foreground mt-1">{responsavel.nome}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
+
+      {/* Informações Adicionais */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Resumo Organizacional</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="p-3 rounded-lg bg-blue-50">
+              <div className="text-xl font-semibold text-blue-600">3</div>
+              <div className="text-sm text-muted-foreground">Diretores</div>
+            </div>
+            <div className="p-3 rounded-lg bg-green-50">
+              <div className="text-xl font-semibold text-green-600">6</div>
+              <div className="text-sm text-muted-foreground">Gerências</div>
+            </div>
+            <div className="p-3 rounded-lg bg-orange-50">
+              <div className="text-xl font-semibold text-orange-600">5</div>
+              <div className="text-sm text-muted-foreground">Áreas Admin.</div>
+            </div>
+            <div className="p-3 rounded-lg bg-purple-50">
+              <div className="text-xl font-semibold text-purple-600">2</div>
+              <div className="text-sm text-muted-foreground">Escritórios Regionais</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </>
   );
 }
@@ -978,12 +1009,18 @@ function TechnicalCertificates() {
 
 function CompanyStationery() {
   const stationeryItems = [
-    "Papel Timbrado",
-    "Cartão de Visita",
-    "Envelope Oficial",
-    "Apresentação PowerPoint",
-    "Relatório Técnico",
-    "Proposta Comercial"
+    "Papel Timbrado – Ecoplan",
+    "Modelo de Identificação de Pastas - Ecoplan",
+    "Modelo de Identificação de CDs – Ecoplan", 
+    "Modelo de Capa de CD - Ecoplan",
+    "Recibo de Reembolso de Despesas – Ecoplan",
+    "Relatório de Viagem - Ecoplan",
+    "Papel Timbrado – Skill",
+    "Modelo de Identificação de Pastas - Skill",
+    "Modelo de Identificação de CDs – Skill",
+    "Modelo de Capa de CD - Skill", 
+    "Recibo de Reembolso de Despesas – Skill",
+    "Relatório de Viagem - Skill"
   ];
 
   return (

@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { Dashboard } from "./components/Dashboard";
 import { Documents } from "./components/Documents";
+import { Cipa } from "./components/Cipa";  // adicionar no import
 import { Team } from "./components/Team";
 import { Calendar } from "./components/Calendar";
 import { Reports } from "./components/Reports";
@@ -160,6 +161,9 @@ export default function App() {
     // Seções da Empresa
     if (activeSection.startsWith("empresa-")) {
       return <Company section={activeSection} />;
+    }
+    if (activeSection.startsWith("cipa-")) {
+      return <Cipa section={activeSection} />;
     }
     
     // Seções específicas com componentes próprios
