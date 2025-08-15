@@ -9,6 +9,8 @@ import { Calendar } from "./components/Calendar";
 import { Reports } from "./components/Reports";
 import { Projects } from "./components/Projects";
 import { Company } from "./components/Company";
+import { RH } from "./components/Rh";
+import { InclusaoPcD } from "./components/InclusaoPcD";
 import { GenericSection } from "./components/GenericSection";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { Sheet, SheetContent } from "./components/ui/sheet";
@@ -36,7 +38,12 @@ export default function App() {
       "empresa-atestados": "Atestados Técnicos",
       "empresa-papelaria": "Papelaria",
       
-      // Setores
+      // Recursos Humanos
+      "rh-colaboradores": "Colaboradores",
+      "rh-beneficios": "Benefícios",
+      "rh-competencias": "Quadro de Competências",
+      
+      // Setores (legacy)
       "setores-rh": "Recursos Humanos",
       
       // CIPA
@@ -48,9 +55,9 @@ export default function App() {
       "cipa-eleicoes": "Eleições CIPA",
       
       // Inclusão PcD
-      "inclusao-info": "Inclusão PcD",
-      "inclusao-deficiencias": "Deficiências",
-      "inclusao-relacionamento": "Relacionamento PcD",
+      "inclusao-info": "Programa de Inclusão PcD",
+      "inclusao-deficiencias": "Tipos de Deficiências",
+      "inclusao-relacionamento": "Como se Relacionar com PcD",
       "inclusao-legislacao": "Legislação PcD",
       "inclusao-glossario": "Glossário PcD",
       
@@ -140,6 +147,14 @@ export default function App() {
       "empresa-responsaveis": "Principais responsáveis por área na empresa",
       "empresa-atestados": "Templates e modelos de atestados técnicos",
       "empresa-papelaria": "Templates e modelos de papelaria institucional",
+      "rh-colaboradores": "Gestão e informações dos colaboradores",
+      "rh-beneficios": "Benefícios e vantagens oferecidos aos funcionários", 
+      "rh-competencias": "Mapeamento de competências e habilidades da equipe",
+      "inclusao-info": "Programa de inclusão de pessoas com deficiência da Ecoplan",
+      "inclusao-deficiencias": "Tipos e características das deficiências",
+      "inclusao-relacionamento": "Dicas para convivência respeitosa e inclusiva",
+      "inclusao-legislacao": "Leis e normas sobre inclusão de PcD",
+      "inclusao-glossario": "Termos e conceitos sobre acessibilidade e inclusão",
       "setores-rh": "Gestão de recursos humanos e colaboradores",
       "cipa-historico": "Histórico e registros da CIPA",
       "sistemas-ssi": "Sistema de solicitações de suporte de TI",
@@ -164,6 +179,14 @@ export default function App() {
     }
     if (activeSection.startsWith("cipa-")) {
       return <Cipa section={activeSection} />;
+    }
+    // Seções de Recursos Humanos
+    if (activeSection.startsWith("rh-")) {
+      return <RH section={activeSection} />;
+    }
+    // Seções de Inclusão PcD
+    if (activeSection.startsWith("inclusao-")) {
+      return <InclusaoPcD section={activeSection} />;
     }
     
     // Seções específicas com componentes próprios

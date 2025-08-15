@@ -21,7 +21,8 @@ import {
   ShoppingCart,
   Leaf,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  HandHeart
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
@@ -56,6 +57,24 @@ export function Sidebar({ activeSection, onSectionChange, isMobile = false }: Si
       label: "Dashboard",
       icon: LayoutDashboard,
       count: null
+    },
+    {
+      id: "documents",
+      label: "Documentos",
+      icon: FileText,
+      count: 12
+    },
+    {
+      id: "team",
+      label: "Equipe",
+      icon: Users,
+      count: null
+    },
+    {
+      id: "calendar",
+      label: "Calendário",
+      icon: Calendar,
+      count: 3
     }
   ];
 
@@ -71,17 +90,17 @@ export function Sidebar({ activeSection, onSectionChange, isMobile = false }: Si
         { id: "empresa-clientes", label: "Clientes", icon: Users },
         { id: "empresa-organograma", label: "Organograma", icon: Users },
         { id: "empresa-brigada", label: "Organograma Brigada", icon: Shield },
-        { id: "empresa-responsaveis", label: "Responsáveis", icon: Users },
-        { id: "empresa-atestados", label: "Modelos de Atestados", icon: FileCheck },
-        { id: "empresa-papelaria", label: "Papelaria", icon: FileText }
+        { id: "empresa-responsaveis", label: "Responsáveis", icon: Users }
       ]
     },
     {
-      id: "setores",
-      label: "Setores",
-      icon: Users,
+      id: "rh",
+      label: "Recursos Humanos",
+      icon: Heart,
       items: [
-        { id: "setores-rh", label: "Recursos Humanos", icon: Heart }
+        { id: "rh-colaboradores", label: "Colaboradores", icon: Users },
+        { id: "rh-beneficios", label: "Benefícios", icon: Gift },
+        { id: "rh-competencias", label: "Quadro de Competências", icon: FileCheck }
       ]
     },
     {
@@ -102,9 +121,9 @@ export function Sidebar({ activeSection, onSectionChange, isMobile = false }: Si
       label: "Inclusão PcD",
       icon: Heart,
       items: [
-        { id: "inclusao-info", label: "Inclusão PcD", icon: Heart },
-        { id: "inclusao-deficiencias", label: "Deficiências", icon: FileText },
-        { id: "inclusao-relacionamento", label: "Relacionando-se com PcD", icon: Users },
+        { id: "inclusao-info", label: "Programa de Inclusão", icon: Heart },
+        { id: "inclusao-deficiencias", label: "Tipos de Deficiências", icon: Users },
+        { id: "inclusao-relacionamento", label: "Como se Relacionar", icon: HandHeart },
         { id: "inclusao-legislacao", label: "Legislação", icon: Scale },
         { id: "inclusao-glossario", label: "Glossário", icon: FileText }
       ]
@@ -121,7 +140,6 @@ export function Sidebar({ activeSection, onSectionChange, isMobile = false }: Si
         { id: "qualidade-manuais", label: "Manuais e Informativos", icon: FileText },
         { id: "qualidade-procedimentos", label: "Procedimentos", icon: Settings },
         { id: "qualidade-instrucoes", label: "Instruções de Trabalho", icon: FileText },
-        { id: "qualidade-modelos", label: "Modelos", icon: FileText },
         { id: "qualidade-aspectos", label: "Aspectos e Impactos Ambientais", icon: Leaf },
         { id: "qualidade-riscos", label: "Perigos e Avaliação dos Riscos", icon: Shield }
       ]
@@ -285,6 +303,16 @@ export function Sidebar({ activeSection, onSectionChange, isMobile = false }: Si
                 >
                   <Icon className="h-4 w-4 shrink-0" />
                   <span className="flex-1 text-left">{item.label}</span>
+                  {item.count && (
+                    <Badge 
+                      variant={isActive ? "secondary" : "outline"}
+                      className={`text-xs ${
+                        isActive ? "bg-sidebar-primary-foreground/20" : ""
+                      }`}
+                    >
+                      {item.count}
+                    </Badge>
+                  )}
                 </Button>
               );
             })}
